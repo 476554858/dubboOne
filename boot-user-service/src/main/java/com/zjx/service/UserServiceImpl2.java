@@ -1,21 +1,19 @@
 package com.zjx.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.zjx.bean.UserAddress;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-//@Service(version = "2.6.2")
-@Service
-public class UserServiceImpl implements UserService{
+//@Service(version = "2.0.0")
+public class UserServiceImpl2 implements UserService{
 
 //    @HystrixCommand
     @Override
     public List<UserAddress> getUserAddressList() {
-        System.out.println("===========boot-user-service");
+        System.out.println("===========boot-user-service-new");
 //        try {
 //            TimeUnit.SECONDS.sleep(3);
 //        } catch (InterruptedException e) {
