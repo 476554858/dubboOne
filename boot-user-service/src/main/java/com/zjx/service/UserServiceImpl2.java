@@ -19,6 +19,7 @@ public class UserServiceImpl2 implements UserService{
 //        } catch (InterruptedException e) {
 //            e.printStackTrace();
 //        }
+
         UserAddress address = new UserAddress(1,"河南","1","张三","010-5555555","y");
         return Arrays.asList(address);
     }
