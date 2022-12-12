@@ -6,5 +6,7 @@ import java.util.List;
 
 public interface OrderService {
 
-    public List<UserAddress> initOrder();
+    public List<UserAddress> getAddress();
+
+    public void orderPay();
 }

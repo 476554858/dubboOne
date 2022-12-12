@@ -1,8 +1,10 @@
 package com.zjx.service;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.zjx.bean.UserAddress;
+import com.zjx.entity.Order;
+import com.zjx.mapper.OrderMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -15,13 +17,29 @@ public class OrderServiceImpl implements OrderService{
 //    @Reference(timeout = 2000, retries = 3, version = "*")
 //    @Reference(stub = "com.zjx.service.SubUserService")
 //    @Reference(url = "127.0.0.1:20880")
-    UserService userService;
+    private UserService userService;
+
+    @Autowired
+    private OrderMapper orderMapper;
+
 
 //    @HystrixCommand(fallbackMethod = "hello")
     @Override
-    public List<UserAddress> initOrder() {
+    public List<UserAddress> getAddress() {
         List<UserAddress> addresses = userService.getUserAddressList();
         return addresses;
+    }
+
+    /**
+     * 订单支付
+     */
+    @Override
+    public void orderPay() {
+        Order order = new Order();
+        order.setAmount(20);
+        order.setUserId(1);
+        order.setStatus(0);
+        orderMapper.insert(order);
     }
 
 

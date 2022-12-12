@@ -1,15 +1,12 @@
 package com.zjx.service;
 
-import com.alibaba.dubbo.config.annotation.Service;
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.zjx.bean.UserAddress;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 //@Service(version = "2.6.2")
-@Service
+//@Service
 public class UserServiceImpl implements UserService{
 
     @Override

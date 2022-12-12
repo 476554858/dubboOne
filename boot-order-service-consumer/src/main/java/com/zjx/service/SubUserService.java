@@ -1,6 +1,5 @@
 package com.zjx.service;
 
-import com.alibaba.dubbo.config.annotation.Service;
 import com.zjx.bean.UserAddress;
 
 import java.util.List;

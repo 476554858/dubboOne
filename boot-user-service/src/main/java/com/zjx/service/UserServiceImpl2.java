@@ -5,9 +5,8 @@ import com.zjx.bean.UserAddress;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
-//@Service(version = "2.0.0")
+@Service(version = "2.0.0")
 public class UserServiceImpl2 implements UserService{
 
 //    @HystrixCommand
