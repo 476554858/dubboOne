@@ -12,7 +12,7 @@
     <artifactId>api</artifactId>
 
     <properties>
-        <mybatis-pagehelper.version>4.1.2</mybatis-pagehelper.version>
+        <mybatis-pagehelper.version>5.3.1</mybatis-pagehelper.version>
         <lombok.version>1.16.10</lombok.version>
         <tcc-transaction.version>2.0.0</tcc-transaction.version>
     </properties>
