@@ -23,4 +23,5 @@
 	
 	<!-- 连接监控中心 -->
 	<dubbo:monitor protocol="registry"></dubbo:monitor>
+
 </beans>

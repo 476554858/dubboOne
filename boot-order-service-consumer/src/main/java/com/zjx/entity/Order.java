@@ -21,6 +21,6 @@ public class Order {
     // 金额
     private Integer amount;
 
-    // 订单状态：0，未支付，1，已支付
+    // 订单状态：0，未支付，1，支付中，2，已支付
     private Integer status;
 }

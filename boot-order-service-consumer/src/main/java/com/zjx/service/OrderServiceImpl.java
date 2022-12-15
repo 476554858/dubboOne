@@ -4,8 +4,12 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import com.zjx.bean.UserAddress;
 import com.zjx.entity.Order;
 import com.zjx.mapper.OrderMapper;
+import org.mengyun.tcctransaction.api.Compensable;
+import org.mengyun.tcctransaction.api.EnableTcc;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,23 +34,47 @@ public class OrderServiceImpl implements OrderService{
         return addresses;
     }
 
-    /**
-     * 订单支付
-     */
-    @Override
-    public void orderPay() {
-        Order order = new Order();
-        order.setAmount(20);
-        order.setUserId(1);
-        order.setStatus(0);
-        orderMapper.insert(order);
-    }
-
-
     public List<UserAddress> hello(){
         UserAddress ua = new UserAddress(10,"测试地址","1","调试","调试","Y");
         List<UserAddress> list = new ArrayList<UserAddress>();
         list.add(ua);
         return list;
     }
+
+    /**
+     * 订单支付
+     * @return
+     */
+    @Compensable(confirmMethod = "comfirmPay", cancelMethod = "cancelPay", asyncCancel = true)
+    @Override
+    public void orderPay() {
+        Order order = orderMapper.selectById(1);
+        // 修改状态为支付中
+        order.setStatus(1);
+        orderMapper.updateById(order);
+        String res = userService.orderPay(1, order.getAmount());
+        if("success".equals(res)){
+            if(true){
+                throw new RuntimeException("认为制造异常");
+            }
+            // 修改支付状态为已支付
+            order.setStatus(2);
+            orderMapper.updateById(order);
+        }
+    }
+
+    public void comfirmPay(){
+        Order order = orderMapper.selectById(1);
+        order.setStatus(2);
+        orderMapper.updateById(order);
+    }
+
+    public void cancelPay(){
+        Order order = orderMapper.selectById(1);
+        order.setStatus(0);
+        orderMapper.updateById(order);
+    }
+
+
+
 }

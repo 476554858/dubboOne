@@ -21,4 +21,9 @@ public class SubUserService implements UserService{
         }
         return null;
     }
+
+    @Override
+    public String orderPay(Integer userId, Integer amount) {
+        return null;
+    }
 }

@@ -32,7 +32,7 @@ public class OrderController {
      */
     @ResponseBody
     @GetMapping("initOrder")
-    public Object payOer() {
+    public Object initOrder() {
         Order order = orderMapper.selectById(1);
         if(order == null){
             order = new Order();
@@ -47,4 +47,21 @@ public class OrderController {
         orderMapper.updateById(order);
         return "ok";
     }
+
+    /**
+     * 测试tcc支付
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("payOrder")
+    public Object payOrder() {
+        try {
+            orderService.orderPay();
+        } catch (Exception e) {
+            return "支付失败";
+        }
+        return "支付成功";
+    }
+
+
 }

@@ -22,4 +22,9 @@ public class UserServiceImpl2 implements UserService{
         UserAddress address = new UserAddress(1,"河南","1","张三","010-5555555","y");
         return Arrays.asList(address);
     }
+
+    @Override
+    public String orderPay(Integer userId, Integer amount) {
+        return null;
+    }
 }
